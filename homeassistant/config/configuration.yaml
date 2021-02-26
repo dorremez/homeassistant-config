@@ -65,7 +65,7 @@ logger:
         ########################################################
 recorder:
   db_url: !secret mysqlurl
-  purge_keep_days: 5
+  purge_keep_days: 3
   auto_purge: true
   exclude:
     domains:
@@ -81,6 +81,19 @@ recorder:
       - sensor.mi_8_pro_last_notification
       - sensor.sm_j730f_last_removed_notification
       - sensor.mi_8_pro_last_removed_notification
+    event_types:
+      - service_removed
+      - service_executed
+      - platform_discovered
+      - homeassistant_start
+      - feedreader
+      - service_registered
+      - call_service
+      - component_loaded
+      - logbook_entry
+      - system_log_event
+
+
   include:
     domains:
       - switch
