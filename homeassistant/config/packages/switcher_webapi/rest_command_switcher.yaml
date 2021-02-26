@@ -1,0 +1,10 @@
+# rest_command:
+
+#       switcher_turn_on:
+#         url: http://192.168.1.25:8100/switcher/turn_on
+#         method: "POST"
+#         payload: '{"minutes": "{{ minutes }}"}'
+
+#       switcher_turn_off:
+#         url: http://192.168.1.25:8100/switcher/turn_off
+#         method: "POST"

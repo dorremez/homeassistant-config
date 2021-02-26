@@ -1,0 +1,95 @@
+switch:
+  - platform: broadlink
+    mac: C8:F7:42:75:F7:10
+  - platform: broadlink
+    mac: C8:F7:42:76:1E:58
+      
+  - platform: broadlink #Living Room Broadlink
+    mac: 78:0F:77:63:66:B4
+    switches:
+
+              ########################################################
+              #                                                      # 
+              #   Living Room Lights                                 #
+              #                                                      # 
+              ########################################################
+
+      - name: demmy
+      - name: wm end
+      - name: dryer end
+      - name: Living Room light
+        command_on: 'sgw0ACQNDSQkDSQNJA0kDSQNDSQkDQ0kDSQNJA0kJA0kDSQNJA0kDQ0kJA0NJA0kJA0kDQwAAW8AAAAA'
+        command_off: 'sgw0ACQNDSQkDSQNJA0NJA0kDSQkDSQNJA0NJA0kDSQkDQ0kDSQkDSQNJA0kDQ0kJA0NJAwAAW8AAAAA'
+
+      - name: Living Room Side Light
+        command_on: 'sgw0ACQNDSQNJA0kJA0NJCQNJA0kDQ0kJA0NJA0kJA0kDQ0kJA0kDQ0kDSQkDSQNJA0kDQwAAW8AAAAA'
+        command_off: 'sgw0AA0kDSQNJA0kDSQkDSQNJA0NJCQNDSQNJA0kJA0kDSQNDSQkDQ0kJA0NJA0kDSQkDQwAAW8AAAAA'
+
+
+              ########################################################
+              #                                                      # 
+              #   Bedroom Lights                                     #
+              #                                                      # 
+              ########################################################
+              
+      - name: Master Bedroom
+        command_on: 'sgw0ACQNJA0kDSQNJA0kDSQNDSQNJA0kJA0kDQ0kJA0NJA0kJA0kDQ0kDSQNJA0kDSQkDQwAAW8AAAAA'
+        command_off: 'sgw0ACQNJA0kDSQNDSQNJCQNDSQkDQ0kJA0kDQ0kJA0kDQ0kJA0kDSQNJA0kDSQNJA0NJAwAAW8AAAAA'
+
+              ########################################################
+              #                                                      # 
+              #   Omri's Lights                                      #
+              #                                                      # 
+              ########################################################
+        
+      - name: Omri Bedroom
+        command_on: 'sgw0ACQNJA0kDQ0kDSQNJA0kJA0NJA0kDSQNJA0kJA0kDSQNJA0kDSQNJA0kDQ0kDSQNJAwAAW8AAAAA'
+        command_off: 'sgw0AA0kDSQNJCQNDSQNJCQNJA0kDQ0kDSQNJA0kDSQNJCQNDSQNJCQNDSQkDQ0kJA0kDQwAAW8AAAAA'
+
+      - name: Omri playroom
+        command_on: 'sgw0ACQNDSQkDSQNJA0NJCQNJA0NJCQNDSQkDSQNJA0NJA0kJA0kDSQNDSQNJA0kDSQkDQwAAW8AAAAA'
+        command_off: 'sgw0ACQNDSQkDSQNJA0NJCQNDSQkDSQNJA0NJA0kJA0NJCQNDSQNJCQNDSQkDSQNDSQNJAwAAW8AAAAA'
+
+              ########################################################
+              #                                                      # 
+              #   Dinning Room Lights                                #
+              #                                                      # 
+              ########################################################
+        
+      - name: Dining Room
+        command_on: 'sgw0ACQNDSQkDSQNDSQNJA0kDSQNJA0kDSQNJCQNDSQkDSQNJA0kDQ0kDSQkDSQNJA0NJAwAAW8AAAAA'
+        command_off: 'sgw0AA0kJA0kDQ0kDSQNJCQNJA0NJCQNJA0NJCQNDSQkDQ0kDSQNJCQNJA0NJA0kJA0NJAwAAW8AAAAA'
+
+      - name: Hallway
+        command_on: 'sgw0ACQNDSQNJA0kDSQkDQ0kJA0kDSQNDSQkDSQNDSQkDSQNJA0kDSQNJA0kDSQNDSQkDQwAAW8AAAAA'
+        command_off: 'sgw0ACQNDSQNJCQNJA0kDQ0kDSQkDQ0kDSQkDQ0kDSQkDSQNDSQkDSQNJA0kDSQNDSQNJAwAAW8AAAAA'
+
+              ########################################################
+              #                                                      # 
+              #   Outside Lights                                     #
+              #                                                      # 
+              ########################################################
+
+      - name: Outside Light
+        command_on: 'sgw0AA0kDSQNJCQNJA0NJA0kDSQkDQ0kJA0kDSQNJA0kDQ0kDSQNJA0kDSQNJCQNJA0kDQwAAW8AAAAA'
+        command_off: 'sgw0ACQNDSQNJA0kDSQNJA0kJA0NJCQNDSQkDQ0kJA0kDSQNDSQNJA0kJA0NJCQNJA0NJAwAAW8AAAAA'
+
+              ########################################################
+              #                                                      # 
+              #   Hallway Lights                                     #
+              #                                                      # 
+              ########################################################
+
+      - name: passroom
+        command_on: 'sgw0ACQNJA0kDSQNDSQNJCQNDSQkDSQNJA0kDQ0kJA0NJCQNJA0kDSQNDSQNJA0kDSQNJAwAAW8AAAAA'
+        command_off: 'sgw0ACQNJA0kDQ0kDSQkDSQNJA0NJCQNDSQkDQ0kJA0kDSQNJA0NJCQNJA0kDSQNDSQNJAwAAW8AAAAA'
+
+              ########################################################
+              #                                                      # 
+              #   Kitchen Lights                                     #
+              #                                                      # 
+              ########################################################
+
+      - name: kitchen
+        command_on: 'sgw0AA0kJA0kDSQNDSQNJCQNDSQNJCQNDSQNJA0kJA0NJCQNJA0NJA0kJA0kDSQNDSQkDQwAAW8AAAAA'
+        command_off: 'sgw0AA0kDSQNJCQNDSQNJCQNDSQkDSQNJA0kDSQNDSQNJCQNDSQkDSQNJA0kDQ0kDSQNJAwAAW8AAAAA'

@@ -1,0 +1,29 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   Gate Open/Close History                            #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      gate_history:
+        value_template: '{{ (as_timestamp(states["binary_sensor.yard_gate"].last_changed) | timestamp_custom("%d/%m - %H:%M", true)) }}'
+        device_class: timestamp
+        friendly_name: gate history
+
+        ########################################################
+        #                                                      # 
+        #   Front Door Open/Close History                      #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      door_history:
+        value_template: '{{ (as_timestamp(states["binary_sensor.front_door"].last_changed) | timestamp_custom("%d/%m - %H:%M", true)) }}'
+        device_class: timestamp
+        friendly_name: door history
+
+  

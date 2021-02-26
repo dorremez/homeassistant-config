@@ -1,0 +1,42 @@
+########################################
+#                                      #
+#     Omri's ESP Led Light             #
+#                                      #
+########################################
+
+- id: '1613489543077'
+  alias: GREEN light - omris led
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:15:00
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      color_name: green
+      brightness: 190
+    entity_id: light.omris_led_light
+  - delay:
+      hours: 1
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_off
+    data: {}
+    entity_id: light.omris_led_light
+  mode: single
+- id: '1613489601414'
+  alias: RED light - omris led
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:15:00'
+  condition: []
+  action:
+  - service: light.turn_on
+    data:
+      color_name: red
+      brightness: 160
+    entity_id: light.omris_led_light
+  mode: single

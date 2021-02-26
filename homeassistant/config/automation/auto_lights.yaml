@@ -1,0 +1,108 @@
+########################################
+#                                      #
+#     Lights Automations               #
+#                                      #
+########################################
+
+- id: '1584995300051'
+  alias: Ask to turn off outside lights
+  description: ''
+  trigger:
+  - entity_id: switch.outside_light
+    for: 00:30:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  - platform: state
+    entity_id: switch.sonoff_1000b8aa4d
+    from: 'off'
+    to: 'on'
+    for: 00:30:00
+  condition: []
+  action:
+  - data:
+      inline_keyboard:
+      - - - Turn OFF
+          - /turnofflights
+        - - Leave ON
+          - /leaveon
+      message: Outside light still ON, What to do?
+    service: telegram_bot.send_message
+  mode: single
+- id: '1584995397023'
+  alias: Turn Outside Lights Off by Notification
+  description: ''
+  trigger:
+  - event_data:
+      command: /turnofflights
+    event_type: telegram_callback
+    platform: event
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.outside_light
+    service: switch.turn_off
+  - service: notify.ha_bot
+    data:
+      message: Outside lights have been turned off.
+  mode: single
+- id: '1584995684099'
+  alias: Turn Outside Lights On when Arrived Home
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.yard_gate
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: switch.outside_light
+      state: 'on'
+  - condition: sun
+    after: sunset
+  action:
+  - data: {}
+    entity_id: switch.outside_light
+    service: switch.turn_on
+  - delay: 00:02:00
+  - data: {}
+    entity_id: switch.outside_light
+    service: switch.turn_off
+  mode: single
+- id: '1585341938872'
+  alias: Turn Living Room Lights on at Night
+  description: ''
+  trigger:
+  - at: '18:10'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: person.dor
+    state: home
+  action:
+  - data: {}
+    entity_id: switch.living_room_light
+    service: switch.turn_on
+- id: '1585342040971'
+  alias: Switch Lights at Living Room
+  description: ''
+  trigger:
+  - at: '19:15'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: person.dor
+    state: home
+  action:
+  - data: {}
+    entity_id: switch.living_room_side_light
+    service: switch.turn_on
+  - data: {}
+    entity_id: switch.living_room_light
+    service: switch.turn_off
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.passroom
+  mode: single

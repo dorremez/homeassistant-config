@@ -1,0 +1,8 @@
+media_player.spotify_21locwkp6bxp7prhbgjmipjeq:
+  friendly_name: Spotify
+zone.home:
+  radius: 20
+script.1585052987229:
+  can_cancel: false
+switch.sonoff_1000b8aa4d:
+  assumed_state: true

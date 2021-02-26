@@ -1,0 +1,74 @@
+        ########################################################
+        #                                                      # 
+        #   Utility Meter                                      #
+        #                                                      # 
+        ########################################################
+utility_meter:
+
+
+    #######################################
+    #                                     #
+    #     Electricity Monthly - Usage     #
+    #                                     #
+    #######################################
+  electricity_monthly_use:
+    source: sensor.shelly_em_electricity_board_channel_1_energy
+    cycle: monthly
+    name: Electricity Monthly Use
+
+    #######################################
+    #                                     #
+    #     Electricity Daily - Usage       #
+    #                                     #
+    #######################################
+  electricity_daily_use:
+    source: sensor.shelly_em_electricity_board_channel_1_energy
+    cycle: daily
+    name: Electricity Daily Use
+
+    #######################################
+    #                                     #
+    #     Electricity Monthly - Cost      #
+    #                                     #
+    #######################################
+  electricity_usage_cost_monthly:
+    source: sensor.electricity_usage_cost
+    name: Monthly Electricity Cost
+    cycle: monthly
+
+    #######################################
+    #                                     #
+    #     Electricity Daily - Cost        #
+    #                                     #
+    #######################################
+  electricity_usage_cost_daily:
+    source: sensor.electricity_usage_cost
+    name: Daily Electricity Cost
+    cycle: daily
+
+    #######################################
+    #                                     #
+    #     Washing Machine Monthly - usage #
+    #                                     #
+    #######################################
+  washing_maching_utility_meter:
+    source: sensor.shellyem_d3b358_0_energy
+    cycle: monthly
+
+    #######################################
+    #                                     #
+    #     Dryer Monthly - Usage           #
+    #                                     #
+    #######################################
+  dryer_utility_meter:
+    source: sensor.shellyem_d3b358_1_energy
+    cycle: monthly
+
+    #######################################
+    #                                     #
+    #     Boiler Daily - Usage            #
+    #                                     #
+    #######################################
+  boiler_utility_meter:
+    source: sensor.boiler_energy
+    cycle: monthly

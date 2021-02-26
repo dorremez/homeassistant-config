@@ -1,0 +1,12 @@
+        ########################################################
+        #                                                      # 
+        #   Outside Camera Ping Sensor                         #
+        #                                                      # 
+        ########################################################
+
+binary_sensor:
+  - platform: ping
+    host: !secret outside_ip_cam
+    name: outside_camera_ping
+    count: 5
+    scan_interval: 30

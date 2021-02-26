@@ -1,0 +1,29 @@
+device_tracker:
+
+  - platform: ping
+    hosts:
+      outside_camera: !secret outside_ip_cam
+
+  - platform: life360
+    username: !secret life360_username
+    password: !secret life360_password
+    add_zones: all
+          # MPH, assuming imperial units.
+          # If using metric (KPH), equivalent would be 29
+    driving_speed: 18
+    filename: life360.conf
+    home_place: Home
+    interval_seconds: 10
+    max_gps_accuracy: 200
+    max_update_wait:
+      minutes: 15
+    prefix: life360
+    show_as_state: driving, moving
+    time_as: device_or_local
+    zone_interval:
+      minutes: 15
+          # Set comm error thresholds so first is not logged,
+          # second is logged as a WARNING, and third and fourth
+          # are logged as ERRORs.
+    warning_threshold: 1
+    error_threshold: 2

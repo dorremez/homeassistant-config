@@ -1,0 +1,27 @@
+- alias: home_occupany set to OFF
+  description: ''
+  trigger:
+  - entity_id: group.home_occupancy
+    platform: state
+    to: 'not_home'
+    for: '00:15:00'
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.home_occupancy
+    service: input_boolean.turn_off
+  mode: single
+
+- alias: home_occupany set to ON
+  description: ''
+  trigger:
+  - entity_id: group.home_occupancy
+    platform: state
+    to: 'home'
+    for: '00:15:00'
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.home_occupancy
+    service: input_boolean.turn_on
+  mode: single

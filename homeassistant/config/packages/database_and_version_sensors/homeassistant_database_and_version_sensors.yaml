@@ -1,0 +1,50 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   Available Hassio Version                           #
+        #                                                      # 
+        ########################################################
+
+  - platform: version
+    name: version_available
+    source: hassio
+
+        ########################################################
+        #                                                      # 
+        #   Current Hassio Version                             #
+        #                                                      # 
+        ########################################################
+
+  - platform: version
+    name: version_current
+
+        ########################################################
+        #                                                      # 
+        #   Data Base File Size                                #
+        #                                                      # 
+        ########################################################
+
+        #- platform: filesize
+        #  file_paths:
+        #    - /config/home-assistant_v2.db
+
+  - platform: sql
+    db_url: !secret mysqlurl
+    scan_interval: 3600
+    queries:
+      - name: db_size
+        query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024 / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="homeassistant" GROUP BY table_schema;'
+        column: 'value'
+        
+
+        ########################################################
+        #                                                      # 
+        #   Hassio Update sensor                               #
+        #                                                      # 
+        ########################################################
+
+  - platform: uptime
+    name: Time Online
+
+

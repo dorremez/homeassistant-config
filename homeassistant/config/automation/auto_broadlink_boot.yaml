@@ -1,0 +1,25 @@
+########################################
+#                                      #
+#     Broadlinks Startup Boot          #
+#                                      #
+########################################
+
+
+- id: '1603387862240'
+  alias: turn broadlonks ON at startup
+  description: ''
+  trigger:
+  - platform: homeassistant
+    event: start
+  condition: []
+  action:
+  - service: remote.turn_on
+    data: {}
+    entity_id: remote.bedroom_broadlink_remote
+  - service: remote.turn_on
+    data: {}
+    entity_id: remote.living_room_broadlink_remote
+  - service: remote.turn_on
+    data: {}
+    entity_id: remote.omris_room_broadlink_remote
+  mode: single

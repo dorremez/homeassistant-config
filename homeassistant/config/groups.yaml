@@ -1,0 +1,46 @@
+everything:
+  name: everything
+  entities:
+    - switch.passroom
+    - switch.omri_playroom
+    - switch.kitchen
+    - switch.master_bedroom
+    - switch.dining_room
+    - switch.living_room_light
+    - switch.omri_bedroom
+    - switch.living_room_side_light
+    - switch.hallway
+    - switch.outside_light
+    - switch.sonoff_1000b8aa4d
+    - climate.living_room_ac
+    - climate.bedroom_ac
+    - climate.omri_s_room_ac
+    - media_player.samsung_ua55es6200
+    - switch.rc_on_off
+lights:
+  name: lights
+  entities:
+    - switch.passroom
+    - switch.omri_playroom
+    - switch.kitchen
+    - switch.master_bedroom
+    - switch.dining_room
+    - switch.living_room_light
+    - switch.omri_bedroom
+    - switch.living_room_side_light
+    - switch.hallway
+    - switch.outside_light
+    - switch.sonoff_1000b8aa4d
+acs:
+  name: air conditioners
+  entities:
+    - climate.living_room_ac
+    - climate.bedroom_ac
+    - climate.omri_s_room_ac
+
+occupancy:
+  name: Home Occupancy
+  entities:
+    - person.dor
+    - person.neta
+  

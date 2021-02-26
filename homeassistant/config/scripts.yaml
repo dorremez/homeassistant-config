@@ -1,0 +1,109 @@
+'1579361301301':
+  alias: 30mins Boiler Run
+  sequence:
+  - entity_id: switch.boiler
+    service: switch.turn_on
+  - delay: 00:30:00
+  - entity_id: switch.boiler
+    service: switch.turn_off
+'1579689081416':
+  alias: Going Out
+  sequence:
+  - entity_id: group.lights
+    service: switch.turn_off
+  - entity_id: group.acs
+    service: switch.turn_off
+  - entity_id: media_player.samsung_tv_remote
+    service: media_player.turn_off
+  - entity_id: media_player.spotify
+    service: media_player.media_pause
+'1579689220770':
+  alias: Story Time
+  sequence:
+  - entity_id: group.lights
+    service: switch.turn_off
+  - entity_id: switch.living_room_side_light
+    service: switch.turn_on
+  - entity_id: switch.swith_to_radio
+    service: switch.turn_on
+'1579730399568':
+  alias: Kodi Time
+  sequence:
+  - entity_id: group.lights
+    service: switch.turn_off
+  - entity_id: switch.living_room_side_light
+    service: switch.turn_on
+  - data: {}
+    entity_id: switch.hdmi2
+    service: switch.turn_on
+  - data:
+      message: open kodi
+    service: notify.hapb
+  - entity_id: switch.051724052462ab286acc
+    service: switch.turn_on
+'1582308730331':
+  alias: Play Spotify on living room speakers
+  sequence:
+  - entity_id: switch.rc_on_off
+    service: switch.toggle
+  - entity_id: switch.hdmi2
+    service: switch.toggle
+  - data_template:
+      entity_id: media_player.spotify
+      source: DESKTOP-I12CNVA
+    service: media_player.select_source
+  - data_template:
+      entity_id: media_player.spotify
+      media_content_id: spotify:user:spotify:playlist:37i9dQZF1DWU0ScTcjJBdj
+      media_content_type: playlist
+    service: media_player.play_media
+  mode: single
+'1582308730332':
+  alias: good night
+  sequence:
+  - entity_id: switch.tv_on_off
+    service: switch.turn_off
+  - entity_id: switch.rc_on_off
+    service: switch.turn_on
+  - entity_id: switch.living_room_side_light
+    service: switch.turn_off
+'1585052987229':
+  alias: Going To Bed
+  sequence:
+  - delay: 00:00:15
+  - data: {}
+    entity_id: switch.living_room_side_light
+    service: switch.turn_off
+  - data: {}
+    entity_id: switch.rc_on_off
+    service: switch.turn_off
+  - service: media_player.turn_off
+    data: {}
+    entity_id: media_player.samsung_ua55es6200
+  mode: single
+'1587736515086':
+  alias: 20mins Boiler Run
+  sequence:
+  - data: {}
+    entity_id: switch.boiler
+    service: switch.turn_on
+  - delay: 00:20:00
+  - data: {}
+    entity_id: switch.boiler
+    service: switch.turn_off
+'1587736564493':
+  alias: 60mins Boiler Run
+  sequence:
+  - data: {}
+    entity_id: switch.boiler
+    service: switch.turn_on
+  - delay: 01:00:00
+  - data: {}
+    entity_id: switch.boiler
+    service: switch.turn_off
+
+'ipcammotion':
+  alias: Outside Camera Motion Detection ON
+  sequence:
+  - service: automation.trigger
+    entity_id: automation.outside_camera_snapshot

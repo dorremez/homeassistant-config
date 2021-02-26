@@ -1,0 +1,78 @@
+########################################
+#                                      #
+#     Smoke Detectors Alarms           #
+#                                      #
+########################################
+
+- id: '1609946746231'
+  alias: Smoke alarm - living room
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.fire_16
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_dor
+    data:
+      message: Smoke Detected in the Living room
+      title: Smoke Alarm!! 🚨
+  mode: single
+- id: '1609946972373'
+  alias: Smoke alarm - Kitchen
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.fire_23
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_dor
+    data:
+      message: Smoke Detected in the Kitchen
+      title: 🚨 Smoke Alarm!! 🚨
+  mode: single
+- id: '1609947018322'
+  alias: Smoke alarm - Master bedroom
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.fire_22
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_dor
+    data:
+      message: Smoke Detected in the Master bedroom
+      title: 🚨 Smoke Alarm!! 🚨
+  mode: single
+- id: '1609947059715'
+  alias: Smoke alarm - Omri's room
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.fire_21
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_dor
+    data:
+      message: Smoke Detected in the Omri'sroom
+      title: 🚨 Smoke Alarm!! 🚨
+  mode: single
+- id: '1610006015998'
+  alias: Turn off Omri's AC at 7:30 AM
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:30:00
+  condition: []
+  action:
+  - service: climate.turn_off
+    data: {}
+    entity_id: climate.omri_s_room_ac
+  mode: single

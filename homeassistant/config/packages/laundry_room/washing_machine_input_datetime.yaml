@@ -1,0 +1,28 @@
+input_datetime:
+
+        ########################################################
+        #                                                      # 
+        #   Washing Machine's Last Run Time                    #
+        #                                                      # 
+        ########################################################
+
+  washing_machine_last_runtime:
+    name: Washing Machine Last Run
+    has_time: true
+    has_date: false
+
+        ########################################################
+        #                                                      # 
+        #   Washing Machine's Ended Date                       #
+        #                                                      # 
+        ########################################################
+
+  wm_end_date:
+    name: Washing Machine End Date
+    has_date: true
+    has_time: true
+
+input_boolean:
+  washing_machine_full:
+    name: Washing Machine is Full
+    initial: false

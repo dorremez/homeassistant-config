@@ -1,0 +1,3 @@
+input_boolean:
+    home_occupancy:
+        name: Home Occupancy

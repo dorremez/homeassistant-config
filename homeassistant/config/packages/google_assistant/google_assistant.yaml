@@ -1,0 +1,71 @@
+        ########################################################
+        #                                                      # 
+        #   Google Assistant                                   #
+        #                                                      # 
+        ########################################################
+
+google_assistant:
+ project_id: !secret google_project_id
+ service_account: !include /config/SERVICE_ACCOUNT.JSON
+ report_state: true
+ exposed_domains:
+   - switch
+   - climate
+ entity_config:
+   switch.demmy:
+     expose: false
+     room: LIVING_ROOM
+   switch.boiler_water_tempature_sensor:
+     expose: false
+     room: LIVING_ROOM
+   switch.hdmi1:
+     expose: false
+     room: LIVING_ROOM
+   switch.hdmi2:
+     expose: false
+     room: LIVING_ROOM
+   switch.shellyem_d3b358_relay_0:
+     expose: false
+     room: LIVING_ROOM
+   switch.adguard_filtering:
+     expose: false
+   switch.adguard_parental_control:
+     expose: false
+   switch.adguard_protection:
+     expose: false
+   switch.adguard_safe_browsing:
+     expose: false
+   switch.adguard_safe_search:
+     expose: false
+   binary_sensor.shellyem_d3b358_over_power:
+     expose: false
+   switch.sonoff_10009afe33:
+     expose: false
+   switch.sonoff_1000b8ad3d:
+     expose: false
+   switch.wm_end:
+     expose: false
+   switch.dryer_end:
+     expose: false
+   switch.foo_screen:
+     expose: false
+   switch.boiler_relay_0:
+     expose: false
+   switch.rc_mute:
+     expose: false
+   switch.rc_on_off:
+     expose: false
+   switch.rc_vol_down:
+     expose: false
+   switch.rc_vol_up:
+     expose: false
+   switch.tv_on_off:
+     expose: false
+   switch.051724052462ab286acc:
+     expose: false
+   switch.boiler:
+     expose: false
+   light.fastled_ws2811_light:
+     expose: true
+   light.omris_led_light:
+     expose: true

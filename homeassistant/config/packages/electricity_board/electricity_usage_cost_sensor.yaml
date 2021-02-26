@@ -1,0 +1,14 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   Household Electricity Usage Cost                   #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      electricity_usage_cost:
+        friendly_name: "Electricity Usage Cost"
+        value_template: "{{(((states('sensor.electricity_monthly_use') | float) * 54.87) / 100) | round(2) }}"
+        unit_of_measurement: "₪"

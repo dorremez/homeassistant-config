@@ -1,0 +1,14 @@
+monitor_docker:
+  - name: Docker
+    containers:
+      - botvid
+      - havid
+    rename:
+      botvid: BOTvid
+    monitored_conditions:
+      - version
+      - containers_running
+      - containers_total
+      - state
+      - status
+      - memory

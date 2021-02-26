@@ -1,0 +1,31 @@
+########################################
+#                                      #
+#     Magic Cube                       #
+#                                      #
+########################################
+
+
+- id: '1612297036143'
+  alias: Mi Magic Cube
+  description: ''
+  use_blueprint:
+    path: bergstrom/mi-magic-cube-deconz-45-actions.yaml
+    input:
+      remote: 7e373ba0af1ce83deb6cffc059247a60
+      flip_90: true
+      cube_flip_90:
+      - service: switch.toggle
+        data: {}
+        entity_id: switch.living_room_side_light
+      rotate_clockwise:
+      - service: switch.toggle
+        data: {}
+        entity_id: switch.rc_vol_up
+      rotate_counter_clockwise:
+      - service: switch.toggle
+        data: {}
+        entity_id: switch.rc_vol_down
+      one_to_one:
+      - service: switch.toggle
+        data: {}
+        entity_id: switch.outside_light

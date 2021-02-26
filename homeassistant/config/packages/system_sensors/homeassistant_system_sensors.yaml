@@ -1,0 +1,145 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   CPU Speed Test                                     #
+        #                                                      # 
+        ########################################################
+
+  - platform: cpuspeed
+    name: CPU SPEED TEST
+
+        ########################################################
+        #                                                      # 
+        #   Date Time Sensor                                   #
+        #                                                      # 
+        ########################################################
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
+
+        ########################################################
+        #                                                      # 
+        #   HA System Monitor                                  #
+        #                                                      # 
+        ########################################################
+
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
+      - type: memory_use
+      - type: processor_use
+      - type: last_boot
+      - type: network_in
+        arg: enp2s0
+      - type: network_out
+        arg: enp2s0
+      - type: ipv4_address
+        arg: enp2s0
+      - type: packets_in
+        arg: enp2s0
+      - type: packets_out
+        arg: enp2s0
+
+        ########################################################
+        #                                                      # 
+        #   Host System Monitor                                #
+        #                                                      # 
+        ########################################################
+
+  - platform: openhardwaremonitor
+    host: 192.168.1.10
+
+        ########################################################
+        #                                                      # 
+        #   Automations Count                                  #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      automations_count:
+        value_template: '{{ states.automation | count }}'
+        friendly_name: Automations
+
+        ########################################################
+        #                                                      # 
+        #   Sensors Count                                      #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      sensors_count:
+        value_template: '{{ states.sensor | count }}'
+        friendly_name: Sensors
+
+        ########################################################
+        #                                                      # 
+        #   Switches Count                                     #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      switch_count:
+        value_template: '{{ states.switch | count }}'
+        friendly_name: Switchess
+
+        ########################################################
+        #                                                      # 
+        #   Binary Sensors                                     #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      binary_sensor_count:
+        value_template: '{{ states.binary_sensor | count }}'
+        friendly_name: Binary Sensors
+
+        ########################################################
+        #                                                      # 
+        #   Tracking Devices Count                             #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      devices_count:
+        value_template: '{{ states.device_tracker | count }}'
+        friendly_name: Tracking Devices
+
+        ########################################################
+        #                                                      # 
+        #   Sences Count                                       #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      sences_count:
+        value_template: '{{ states.scene | count }}'
+        friendly_name: Sences
+
+        ########################################################
+        #                                                      # 
+        #   Scripts Count                                      #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      scripts_count:
+        value_template: '{{ states.script | count }}'
+        friendly_name: Scripts

@@ -1,0 +1,56 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   Boilers's Cost                                     #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      boiler_cost:
+        friendly_name: "Boiler Cost"
+        value_template: "{{(((states('sensor.boiler_utility_meter') | float) * 54.87) / 100) | round(2) }}"
+        unit_of_measurement: "₪"
+
+        ########################################################
+        #                                                      # 
+        #   Boiler's Current Run Time                          #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      boiler_run_time:
+        friendly_name: 'Boiler Run Time'
+        value_template: >-
+          {% if is_state('switch.boiler', 'on') %}
+              {{(as_timestamp(now())-as_timestamp(states.switch.boiler.last_changed)) | timestamp_custom("%H:%M:%S", False)}}
+            {% else %}
+              OFF
+          {% endif %}
+
+        ########################################################
+        #                                                      # 
+        #   Boiler Water Tempature Sensor                      #
+        #                                                      # 
+        ########################################################
+  - platform: template
+    sensors:
+        boiler_water_tempature:
+            friendly_name: Boiler's Water temperature
+            device_class: temperature
+            value_template: "{{ state_attr('switch.boiler_water_tempature_sensor', 'temperature') }}"
+
+
+        ########################################################
+        #                                                      # 
+        #   Boiler's Last Run Time/Date                        #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      boiler_date_record:
+        friendly_name: Boiler DateTime record
+        value_template: "{{ as_timestamp(states.input_boolean.boiler_status.last_changed) | timestamp_custom('%d/%m @ %H:%M:%S', True) }}"

@@ -1,0 +1,48 @@
+sensor:
+
+
+
+        ########################################################
+        #                                                      # 
+        #   Dryer's Cost                                       #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      dryer_cost:
+        friendly_name: "Dryer Cost"
+        value_template: "{{(((states('sensor.dryer_utility_meter') | float) * 54.87) / 100) | round(2) }}"
+        unit_of_measurement: "₪"
+
+        ########################################################
+        #                                                      # 
+        #   Dryer's Run Time                                   #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      dryer_run_time:
+        friendly_name: 'Dryer Run Time'
+        value_template: >-
+                {% if is_state("binary_sensor.dryer_on", "on") %}
+                {{(as_timestamp(now())-as_timestamp(states.binary_sensor.dryer_on.last_changed)) | timestamp_custom("%H:%M", False)}}
+                {% else %}
+                OFF
+                {% endif %}
+
+        ########################################################
+        #                                                      # 
+        #   Dryer's Last Run Time/Date                         #
+        #                                                      # 
+        ########################################################
+
+
+  - platform: template
+    sensors:
+      dryer_date_record:
+        friendly_name: Dryer DateTime record
+        value_template: "{{ as_timestamp(states.input_datetime.dryer_end_date.state) | timestamp_custom('%d/%m @ %H:%M:%S', True) }}"
+
+

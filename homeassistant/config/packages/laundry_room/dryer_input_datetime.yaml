@@ -1,0 +1,29 @@
+input_datetime:
+
+        ########################################################
+        #                                                      # 
+        #   Dryers's Last Run Time                             #
+        #                                                      # 
+        ########################################################
+
+  dryer_last_runtime:
+    name: Dryer Last run
+    has_date: false
+    has_time: true
+
+        ########################################################
+        #                                                      # 
+        #   Dryers's Ended Date                                #
+        #                                                      # 
+        ########################################################
+
+  dryer_end_date:
+    name: Dryer End Date
+    has_date: true
+    has_time: true
+
+
+input_boolean:
+  dryer_full:
+    name: Washing Machine if Full
+    initial: false

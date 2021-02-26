@@ -1,0 +1,33 @@
+ #- platform: template
+ ##  sensors:
+ #    shelly_rssi_value:
+ #      friendly_name: RSSI Value
+ #      value_template: >-
+ #          {% if (states('sensor.shelly_shem_d3b358_rssi')) | float > -50 %}
+ #               Excellent
+ #          {% elif (states('sensor.shelly_shem_d3b358_rssi')) | float < -60 and
+ #                  (states('sensor.shelly_shem_d3b358_rssi')) | float > -61  %}
+ #               Good
+ #          {% elif (states('sensor.shelly_shem_d3b358_rssi')) | float < -61 and
+ #                  (states('sensor.shelly_shem_d3b358_rssi')) | float > -70 %}
+ ##               Fair
+ #         {% else %}
+ #               Bad
+ #          {% endif %}
+
+ #- platform: template
+ #  sensors:
+ #    boiler_rssi_value:
+ #      friendly_name: Boiler RSSI Value
+ #      value_template: >-
+ #          {% if (states('sensor.shelly_shsw_pm_68c63afadf8e_rssi')) | float > -50 %}
+ #               Excellent
+ #          {% elif (states('sensor.shelly_shsw_pm_68c63afadf8e_rssi')) | float < -60 and
+ #                  (states('sensor.shelly_shsw_pm_68c63afadf8e_rssi')) | float > -61  %}
+ #               Good
+ #          {% elif (states('sensor.shelly_shsw_pm_68c63afadf8e_rssi')) | float < -61 and
+ #                  (states('sensor.shelly_shsw_pm_68c63afadf8e_rssi')) | float > -70 %}
+ #               Fair
+ #         {% else %}
+ #               Bad
+ #          {% endif %}

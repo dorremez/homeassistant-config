@@ -1,0 +1,43 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   Washing Machine's Cost                             #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      washing_machine_cost:
+        friendly_name: "Washing Machine Cost"
+        value_template: "{{(((states('sensor.washing_maching_utility_meter') | float) * 54.87) / 100) | round(2) }}"
+        unit_of_measurement: "₪"
+
+        ########################################################
+        #                                                      # 
+        #   Washing Machine's Run Time                         #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      washing_machine_run_time:
+        friendly_name: 'Washing Machine Run Time'
+        value_template: >-
+              {% if is_state('binary_sensor.washing_machine_on', 'on') %}
+              {{(as_timestamp(now())-as_timestamp(states.binary_sensor.washing_machine_on.last_changed)) | timestamp_custom("%H:%M", False)}}
+              {% else %}
+              OFF
+              {% endif %}
+
+        ########################################################
+        #                                                      # 
+        #   Washing Machine's Last Run Time/Date               #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      wm_date_record:
+        friendly_name: Whasing Machine DateTime record
+        value_template: "{{ as_timestamp(states.input_datetime.wm_end_date.state) | timestamp_custom('%d/%m @ %H:%M:%S', True) }}"

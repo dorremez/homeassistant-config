@@ -1,0 +1,32 @@
+########################################
+#                                      #
+#     Tablet Charging Socket           #
+#                                      #
+########################################
+
+- id: '1600320812300'
+  alias: turn off tablet socket
+  description: ''
+  trigger:
+  - above: '80'
+    entity_id: sensor.vi106_battery_level
+    platform: numeric_state
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.sonoff_1000b8ad3d
+    service: switch.turn_off
+  mode: single
+- id: '1600320857414'
+  alias: turn on tablet socket
+  description: ''
+  trigger:
+  - below: '30'
+    entity_id: sensor.vi106_battery_level
+    platform: numeric_state
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.sonoff_1000b8ad3d
+    service: switch.turn_on
+  mode: single

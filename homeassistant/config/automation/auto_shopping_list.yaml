@@ -1,0 +1,18 @@
+########################################
+#                                      #
+#     Shopping List                    #
+#                                      #
+########################################
+
+- id: 'Notify about new item in Shopping List'
+  trigger:
+    platform: event
+    event_type: shopping_list_updated
+    event_data:
+      action: "add"
+  action:
+    service: notify.mobile_app_dor
+    data:
+      title: Shopping List
+      message: >
+         {{ trigger.event.data.item.name }} נוסף לרשימת הקניות

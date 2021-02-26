@@ -1,0 +1,73 @@
+- id: '1579303373538'
+  alias: 'Good Morning '
+  description: ''
+  trigger:
+  - at: 07:30
+    platform: time
+  condition: []
+  action:
+  - entity_id: script.goog_morning
+    service: script.turn_on
+
+
+
+- id: '1586785305687'
+  alias: DuckDns's Down
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.duckdns
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: There might be problems connecting from outside
+      title: DuckDNS is down
+    service: notify.mobile_app_dor
+
+
+
+- id: '1586792788445'
+  alias: Notify when HA starts
+  description: ''
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - data:
+      message: I guess it was restarted..
+      title: HA has loaded
+    service: notify.mobile_app_dor
+
+- id: '1601918631469'
+  alias: refresh date sensor
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:01
+  condition: []
+  action:
+  - service: homeassistant.update_entity
+    entity_id: sensor.date_custom
+    data: {}
+  mode: single
+
+
+
+- id: '1610220268330'
+  alias: New Automation
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.sm_j730f_last_notification
+  condition: []
+  action:
+  - service: notify.ha_secrets
+    data_template:
+      message: "New Notification: {{ state_attr('sensor.sm_j730f_last_notification',\
+        \ 'android.title') }}:\n \n{{ state_attr('sensor.sm_j730f_last_notification',\
+        \ 'android.text') }}\n"
+  mode: parallel
+  max: 10

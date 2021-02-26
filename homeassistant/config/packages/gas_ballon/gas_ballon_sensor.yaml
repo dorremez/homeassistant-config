@@ -1,0 +1,28 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   Left Gas Weight Left in Tank                       #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      left_ballon_gas_weight_left:
+        friendly_name: "Left Ballon Gas Weight Left"
+        value_template: "{{((states('sensor.gas_weight_sensor') | float) - states('input_number.left_gas_ballon_weight') | float) | round(2) }}"
+        unit_of_measurement: "kg"
+
+
+        ########################################################
+        #                                                      # 
+        #   Right Gas Weight Left in Tank                       #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      right_ballon_gas_weight_left:
+        friendly_name: "Right Ballon Gas Weight Left"
+        value_template: "{{((states('sensor.right_gas_ballon') | float) - states('input_number.right_gas_ballon_weight') | float) | round(2) }}"
+        unit_of_measurement: "kg"

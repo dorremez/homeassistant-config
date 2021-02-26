@@ -1,0 +1,233 @@
+        ########################################################
+        #                                                      # 
+        #   Homeassistant                                      #
+        #                                                      # 
+        ########################################################
+
+#http:
+  #base_url: !secret base_url
+  #ssl_certificate: /ssl/fullchain.pem
+  #ssl_key: /ssl/privkey.pem
+
+homeassistant:
+  packages: !include_dir_named packages/
+  customize: !include customize.yaml
+    
+  allowlist_external_dirs:
+    - /config/pics
+    - /config
+    - /config/custom_components
+    - /config/custom_components/sensor
+    - /share/motioneye
+    - /config/pics/deepstack
+
+        ########################################################
+        #                                                      # 
+        #   Default Configuration                              #
+        #                                                      # 
+        ########################################################
+default_config:
+
+zone:
+  - name: Home
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude
+    radius: 100
+
+frontend:
+  themes: !include_dir_merge_named themes
+#  javascript_version: latest
+
+
+        ########################################################
+        #                                                      # 
+        #   Logger                                             #
+        #                                                      # 
+        ########################################################
+logger:
+  default: info
+  logs:
+    custom_components.hacs: debug
+    hacs: debug
+    queueman: debug
+    AIOGitHubAPI: debug
+    stream: critical
+    homeassistant.components.stream.worker: critical
+    homeassistant.components.broadlink.switch: error
+    homeassistant.components.waze_travel_time.sensor: error
+    homeassistant.loader: error
+    libav.h264: critical
+
+        ########################################################
+        #                                                      # 
+        #   Recorder                                           #
+        #                                                      # 
+        ########################################################
+recorder:
+  db_url: !secret mysqlurl
+  purge_keep_days: 5
+  auto_purge: true
+  exclude:
+    domains:
+      - automation
+      - updater
+      - image_processing
+    entities:
+      - sun.sun
+      - sensor.date
+      - sensor.dark
+      - sensor.docker
+      - sensor.sm_j730f_last_notification
+      - sensor.mi_8_pro_last_notification
+      - sensor.sm_j730f_last_removed_notification
+      - sensor.mi_8_pro_last_removed_notification
+  include:
+    domains:
+      - switch
+      - sensor
+      - person
+      - input_select
+      - input_number
+      - input_boolean
+      - script
+      - light
+      - climate
+      - binary_sensor
+      - group
+
+      
+        ########################################################
+        #                                                      # 
+        #   Custom Date Sensor                                 #
+        #                                                      # 
+        ########################################################
+
+sensor:     
+  - platform: template
+    sensors:
+      date_custom:
+        value_template: '{{ as_timestamp(now()) | timestamp_custom("%d/%m/%y", True) }}'
+        friendly_name: Date custom
+
+
+#################################
+#                               # 
+#   General HA Intergrations    #
+#                               #
+#################################
+
+
+        ########################################################
+        #                                                      # 
+        #   Breaking Changes                                   #
+        #                                                      # 
+        ########################################################
+
+breaking_changes:
+     
+
+        ########################################################
+        #                                                      # 
+        #   DarkSky Weather                                    #
+        #                                                      # 
+        ########################################################
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky
+    mode: daily
+
+
+        ########################################################
+        #                                                      # 
+        #   Google                                             #
+        #                                                      # 
+        ########################################################
+
+google:
+  client_id: !secret google_client
+  client_secret: !secret google_secret
+
+
+        ########################################################
+        #                                                      # 
+        #   Google TTS                                         #
+        #                                                      # 
+        ########################################################
+        
+tts:
+  - platform: google_translate
+    base_url: !secret base_url
+
+ 
+        ########################################################
+        #                                                      # 
+        #   Telegram Bot                                       #
+        #                                                      # 
+        ########################################################
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_bot_api
+    allowed_chat_ids:
+      - !secret chat_id_1
+      - !secret chat_id_2
+      - !secret chat_id_3
+
+        ########################################################
+        #                                                      # 
+        #   Spotcast                                           #
+        #                                                      # 
+        ########################################################
+
+spotcast:
+ sp_dc: !secret sp_dc
+ sp_key: !secret sp_key
+
+        ########################################################
+        #                                                      # 
+        #   Spotify                                            #
+        #                                                      # 
+        ########################################################
+
+spotify:
+  client_id: !secret spotify_id
+  client_secret: !secret spotify_secret
+
+        ########################################################
+        #                                                      # 
+        #   Switcher Kis                                       #
+        #                                                      # 
+        ########################################################
+
+switcher_kis:
+ phone_id: '0000'
+ device_id: !secret switcher_device_id
+ device_password: '00000000'
+
+
+        ########################################################
+        #                                                      # 
+        #   Sonoff                                             #
+        #                                                      # 
+        ########################################################
+
+sonoff:
+  username: !secret sonoff_username
+  password: !secret sonoff_password
+  force_update: temperature
+  scan_interval: '00:05:00' 
+  sensors: temperature
+
+
+
+  
+
+########################################################
+#   include                                            #
+########################################################
+
+automation: !include_dir_merge_list automation/
+script: !include scripts.yaml
+scene: !include scenes.yaml
+group: !include groups.yaml

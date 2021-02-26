@@ -1,0 +1,10 @@
+sensor:
+        ########################################################
+        #                                                      # 
+        #   17Track Packages Delivery                          #
+        #                                                      # 
+        ########################################################
+
+  - platform: seventeentrack
+    username: !secret seventeentrack_username
+    password: !secret seventeentrack_password

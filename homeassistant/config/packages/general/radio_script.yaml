@@ -1,0 +1,23 @@
+script:
+  media_player_play_radio_stream:
+    sequence:
+      - service: media_player.play_media
+        data_template:
+          entity_id: "{{ entity_id }}"
+          media_content_id: >
+            {% if content_id == "Kan Gimmel" %}
+              http://kanliveicy.media.kan.org.il/icy/kangimmel_mp3?providername=tunein
+            {% elif content_id == "KAN 88" %}
+              https://kanlivep2event-i.akamaihd.net/hls/live/749623/749623/playlist.m3u8
+            {% elif content_id == "Kan Bet" %}
+              http://kanliveicy.media.kan.org.il/icy/kanbet_mp3
+            {% elif content_id == "GLGLZ" %}
+              http://glzwizzlv.bynetcdn.com/glglz_mp3
+            {% elif content_id == "Galei Zahal" %}
+              http://glzwizzlv.bynetcdn.com/glz_mp3?awCollectionId=misc&awEpisodeId=glz
+            {% elif content_id == "Echo 99 FM" %}
+              http://ads11.livecdn.biz/99fm
+            {% elif content_id == "Radio 90 FM" %}
+              http://90.cdnwz.net/90fm
+            {% endif %}
+          media_content_type: audio/mp3

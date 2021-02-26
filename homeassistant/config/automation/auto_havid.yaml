@@ -1,0 +1,25 @@
+########################################
+#                                      #
+#     HAvid Auto Sign                  #
+#                                      #
+########################################
+
+
+- id: '1603016594233'
+  alias: Health Declaration Auto Sign
+  trigger:
+  - platform: time
+    at: 07:00:00
+  condition:
+  - condition: time
+    weekday:
+    - sun
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - delay: 00:{{ (range(0, 12)|random|int) }}:00
+  - service: script.sign_and_download_havid
+  mode: single

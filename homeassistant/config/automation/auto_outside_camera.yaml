@@ -1,0 +1,98 @@
+########################################
+#                                      #
+#     Outside Camera                   #
+#                                      #
+########################################
+
+- id: 7b355e032d6944488c265f39979d987e
+  alias: outside camera snapshot
+  trigger:
+  - platform: webhook
+    webhook_id: cammotion
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: person.dor
+      state: home
+  action:
+  - service: camera.snapshot
+    data:
+      entity_id: camera.front_door
+      filename: /config/pics/snapshot.jpg
+  - service: image_processing.scan
+    data:
+      entity_id: image_processing.motioneye_image_processing
+  - condition: numeric_state
+    entity_id: image_processing.motioneye_image_processing
+    above: '0'
+  - service: telegram_bot.send_photo
+    data:
+      file: /config/pics/motioneye_image_processing_latest.jpg
+      caption: Motion Detected.
+  mode: parallel
+  max: 30
+
+
+- id: '1603870863993'
+  alias: Send pic from MotionEye
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: '123'
+  condition: []
+  action:
+  - service: telegram_bot.send_photo
+    data:
+      file: /share/motioneye/motionpic.jpg
+      caption: Motion detected outside.
+  mode: parallel
+  max: 5
+
+  
+- id: '1610125420830'
+  alias: Restart outside csmera when connection lost (ping)
+  description: ''
+  trigger:
+  - platform: state
+    for: 00:01:30
+    entity_id: binary_sensor.outside_camera_ping
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.sonoff_10009afe33
+  - delay: 00:00:10
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.sonoff_10009afe33
+  mode: single
+
+- id: '1600843379070'
+  alias: send CCTV snapshot when awway
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yard_gate
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: person.dor
+      state: home
+  action:
+  - delay: 00:00:04
+  - service: camera.snapshot
+    data:
+      entity_id: camera.front_door
+      filename: /config/pics/deepstack/front_yard.jpg
+  - service: telegram_bot.send_photo
+    data:
+      file: /config/pics/deepstack/front_yard.jpg
+      caption: Gate Was Opened.
+  mode: parallel
+  max: 5

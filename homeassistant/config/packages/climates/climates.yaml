@@ -1,0 +1,48 @@
+smartir:
+
+climate:
+
+        ########################################################
+        #                                                      # 
+        #   Living Room AC                                     #
+        #                                                      # 
+        ########################################################
+
+  - platform: smartir
+    name: Living room AC
+    unique_id: living_room_ac
+    device_code: 1180
+    controller_data: remote.living_room_broadlink_remote
+    temperature_sensor: sensor.temperature
+    humidity_sensor: sensor.humidity
+    power_sensor: binary_sensor.ac_power
+
+        ########################################################
+        #                                                      # 
+        #   Omri's Room AC                                     #
+        #                                                      # 
+        ########################################################
+
+  - platform: smartir
+    name: Omri's Room AC
+    unique_id: omri_ac
+    device_code: 1180
+    controller_data: remote.omris_room_broadlink_remote
+    temperature_sensor: sensor.temperature
+    humidity_sensor: sensor.humidity
+    power_sensor: binary_sensor.ac_power
+
+        ########################################################
+        #                                                      # 
+        #   Bedroom AC                                         #
+        #                                                      # 
+        ########################################################
+
+  - platform: smartir
+    name: Bedroom AC
+    unique_id: bedroom_ac
+    device_code: 1382
+    controller_data: remote.bedroom_broadlink_remote
+    temperature_sensor: sensor.temperature
+    humidity_sensor: sensor.humidity
+    power_sensor: binary_sensor.ac_power  

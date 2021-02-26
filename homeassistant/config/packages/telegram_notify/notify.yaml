@@ -1,0 +1,19 @@
+notify:
+
+        ########################################################
+        #                                                      # 
+        #   Telegram Bot Notify                                #
+        #                                                      # 
+        ########################################################
+
+  - name: Ha-Bot
+    platform: telegram
+    chat_id: !secret chat_id_1
+
+  - name: HA-secrets
+    platform: telegram
+    chat_id: !secret chat_id_2
+
+  - name: Health_Decleration
+    platform: telegram
+    chat_id: !secret chat_id_3

@@ -1,0 +1,37 @@
+        ########################################################
+        #                                                      # 
+        #   Image Processing                                   #
+        #                                                      # 
+        ########################################################
+image_processing:
+
+  - platform: deepstack_object
+    ip_address: !secret ha_ip_address
+    port: 5000
+    api_key: !secret deepstack_api
+    save_file_folder: /config/pics/deepstack
+    #save_timestamped_file: True
+#    roi_x_max: 0.8
+#    roi_y_max: 0.8
+    targets:
+      - target: person
+        confidence: 40
+    source:
+      - entity_id: camera.gate_local_file
+        name: gate_image_processing
+
+  - platform: deepstack_object
+    ip_address: !secret ha_ip_address
+    port: 5000
+    api_key: !secret deepstack_api
+    save_file_folder: /config/pics
+    #save_timestamped_file: True
+    show_boxes: True
+   # roi_x_max: 0.8
+    #roi_y_max: 0.8
+    targets:
+      - target: person
+        confidence: 60
+    source:
+      - entity_id: camera.motioneye_local_file
+        name: motioneye_image_processing

@@ -1,0 +1,8 @@
+# input_select:
+#       switcher_timer_minutes_input_select:
+#           name: Timer minutes
+#           options:
+#               - 15
+#               - 30
+#               - 45
+#               - 60

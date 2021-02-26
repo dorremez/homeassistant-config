@@ -1,0 +1,122 @@
+sensor:
+
+        ########################################################
+        #                                                      # 
+        #   Back Home From Present Location Duration           #
+        #                                                      # 
+        ########################################################
+
+  - platform: waze_travel_time
+    origin: sensor.mi_8_pro_geocoded_location
+    destination: !secret home_address
+    region: 'IL'
+    name: from here
+    scan_interval: 180
+
+        ########################################################
+        #                                                      # 
+        #   Back Home From Work Duration                       #
+        #                                                      # 
+        ########################################################
+
+  - platform: waze_travel_time
+    origin: !secret work_address
+    destination: !secret home_address
+    region: 'IL'
+    name: work_to_home
+
+        ########################################################
+        #                                                      # 
+        #   Back Home From Work Distance                       #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      work_to_home_distance:
+        unit_of_measurement: 'KM'
+        value_template: '{{ state_attr("sensor.work_to_home", "distance") }}'
+        friendly_name: 'Distance'
+        icon_template: mdi:map-marker-distance
+
+        ########################################################
+        #                                                      # 
+        #   Home To Work Duration                              #
+        #                                                      # 
+        ########################################################
+
+  - platform: waze_travel_time
+    origin: !secret home_address
+    destination: !secret work_address
+    region: 'IL'
+    name: home_to_work
+
+        ########################################################
+        #                                                      # 
+        #   Home To Work Distance                              #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      home_to_work_distance:
+        unit_of_measurement: 'KM'
+        value_template: '{{ state_attr("sensor.home_to_work","distance") }}'
+        friendly_name: 'Distance'
+        icon_template: mdi:map-marker-distance
+
+
+        ########################################################
+        #                                                      # 
+        #   Home To Work Route                                 #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      home_to_work_route:
+        value_template: '{{ state_attr("sensor.home_to_work","route") }}'
+        friendly_name: 'Route'
+        icon_template: mdi:routes
+
+
+        ########################################################
+        #                                                      # 
+        #   Back Home From Work Route                          #
+        #                                                      # 
+        ########################################################
+
+  - platform: template
+    sensors:
+      work_to_home_route:
+        value_template: '{{ state_attr("sensor.work_to_home","route") }}'
+        friendly_name: 'Route'
+        icon_template: mdi:routes
+
+        ########################################################
+        #                                                      # 
+        #   Back Home From Present Location Distance           #
+        #                                                      # 
+        ########################################################
+
+
+  - platform: template
+    sensors:
+      from_here_distance:
+        unit_of_measurement: 'KM'
+        value_template: '{{ state_attr("sensor.from_here","distance") }}'
+        friendly_name: 'Distance'
+        icon_template: mdi:map-marker-distance
+
+        ########################################################
+        #                                                      # 
+        #   Back Home From Present Location Route              #
+        #                                                      # 
+        ########################################################
+        
+  - platform: template
+    sensors:
+      from_here_route:
+        value_template: '{{ state_attr("sensor.from_here","route") }}'
+        friendly_name: 'Route'
+        icon_template: mdi:routes

@@ -1,0 +1,7 @@
+######################################################## 
+#   Living Room Lights statistics                      #
+########################################################
+sensor:
+  - platform: statistics
+    entity_id: sensor.living_room
+    name: living_room_stats

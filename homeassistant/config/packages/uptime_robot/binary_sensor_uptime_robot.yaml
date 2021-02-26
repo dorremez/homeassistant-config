@@ -1,0 +1,9 @@
+        ########################################################
+        #                                                      # 
+        #   Uptime Robot Binary Sensor                         #
+        #                                                      # 
+        ########################################################
+
+binary_sensor:
+  - platform: uptimerobot
+    api_key: !secret uptimebot

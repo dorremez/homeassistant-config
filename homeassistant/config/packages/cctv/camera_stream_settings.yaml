@@ -1,0 +1,24 @@
+        ########################################################
+        #                                                      # 
+        #   Camera Stream Settings                             #
+        #                                                      # 
+        ########################################################
+stream:
+
+camera:
+  - platform: generic
+    name: Front Yard
+    still_image_url: !secret still_image_url
+    stream_source: !secret stream_source
+        
+  - platform: ffmpeg
+    name: Front Door
+    input: !secret stream_source
+    
+  - platform: local_file
+    name: Gate Local File
+    file_path: /config/pics/deepstack/front_yard.jpg
+    
+  - platform: local_file
+    name: MotionEye Local file
+    file_path: /config/pics/snapshot.jpg

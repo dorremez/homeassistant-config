@@ -1,0 +1,6 @@
+rest_command:
+
+  sign_havid:
+    url: !secret havid_sign_url
+    method: "GET"
+    timeout: 60

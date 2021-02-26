@@ -1,0 +1,51 @@
+script:
+  sign_havid:
+    alias: Sign HAvid-19
+    sequence:
+        - service: rest_command.sign_havid
+
+  download_havid:
+    alias: Download HAvid-19
+    sequence:
+        - service: shell_command.download_havid
+
+  sign_and_download_havid:
+    alias: Sign and Download HAvid-19
+    sequence:
+        - service: script.sign_havid
+        - delay:
+            seconds: 60
+        - service: script.download_havid
+        - service: notify.health_decleration
+          data:
+            title: 'Health Declaration'
+            message: 'Signed'
+            data:
+              photo:
+                - file: /config/www/havid.jpg
+                  caption: "Health Declaration"
+       
+        - service: switch.turn_on
+          data:
+            entity_id: switch.foo_screen
+        - delay:
+            seconds: 15
+        - service: browser_mod.popup
+          data:
+            title: Health Decleration
+            card:
+              type: custom:refreshable-picture-card
+              title: null
+              update_interval: 10
+              static_picture: /local/havid.jpg
+            deviceID: tablet
+          #data:
+          #  title: 'Health Declaration'
+          #  message: 'Signed'
+          #  data:
+          #    photo:
+          #      - file: /config/www/havid.jpg
+          #        caption: "Health Declaration"
+
+shell_command:
+  download_havid: !secret download_havid_shell
